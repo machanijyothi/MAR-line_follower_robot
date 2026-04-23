@@ -91,7 +91,7 @@ ros2 run gazebo_ros spawn_entity.py -entity simple_bot -file simple_robot.sdf -x
 ### Run Controller
 
 ros2 run line_follower controller
-
+```
 ---
 
 ## Working Principle
