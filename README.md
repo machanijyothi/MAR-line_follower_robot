@@ -82,14 +82,14 @@ source install/setup.bash
 
 ```bash
 gazebo --verbose -s libgazebo_ros_init.so -s libgazebo_ros_factory.so src/line_follower/worlds/track.world
-
+```
 ### Spawn Robot
-
+```bash
 ros2 run gazebo_ros spawn_entity.py -entity simple_bot -file simple_robot.sdf -x 0 -y 6 -z 0.3
-
+```
 
 ### Run Controller
-
+```bash
 ros2 run line_follower controller
 ```
 ---
