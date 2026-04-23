@@ -1,0 +1,152 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+<world name="continuous_track">
+
+  <include>
+    <uri>model://sun</uri>
+  </include>
+
+  <include>
+    <uri>model://ground_plane</uri>
+  </include>
+
+  <!-- ================= TRACK ================= -->
+  <model name="track">
+    <static>true</static>
+    <link name="link">
+
+      <!-- TOP -->
+      <collision name="top_collision">
+        <pose>0 6 0.02 0 0 0</pose>
+        <geometry>
+          <box><size>12 0.8 0.01</size></box>
+        </geometry>
+      </collision>
+      <visual name="top_visual">
+        <pose>0 6 0.02 0 0 0</pose>
+        <geometry>
+          <box><size>12 0.8 0.01</size></box>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- BOTTOM -->
+      <collision name="bottom_collision">
+        <pose>0 -6 0.02 0 0 0</pose>
+        <geometry>
+          <box><size>12 0.8 0.01</size></box>
+        </geometry>
+      </collision>
+      <visual name="bottom_visual">
+        <pose>0 -6 0.02 0 0 0</pose>
+        <geometry>
+          <box><size>12 0.8 0.01</size></box>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- LEFT -->
+      <collision name="left_collision">
+        <pose>-6 0 0.02 0 0 1.57</pose>
+        <geometry>
+          <box><size>12 0.8 0.01</size></box>
+        </geometry>
+      </collision>
+      <visual name="left_visual">
+        <pose>-6 0 0.02 0 0 1.57</pose>
+        <geometry>
+          <box><size>12 0.8 0.01</size></box>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- RIGHT -->
+      <collision name="right_collision">
+        <pose>6 0 0.02 0 0 1.57</pose>
+        <geometry>
+          <box><size>12 0.8 0.01</size></box>
+        </geometry>
+      </collision>
+      <visual name="right_visual">
+        <pose>6 0 0.02 0 0 1.57</pose>
+        <geometry>
+          <box><size>12 0.8 0.01</size></box>
+        </geometry>
+        <material>
+          <ambient>0 0 0 1</ambient>
+          <diffuse>0 0 0 1</diffuse>
+        </material>
+      </visual>
+
+    </link>
+  </model>
+
+  <!-- ================= OBSTACLES ================= -->
+
+  <model name="obs1">
+    <static>true</static>
+    <pose>3 6 0.25 0 0 0</pose>
+    <link name="link">
+      <collision name="c1">
+        <geometry>
+          <box><size>0.4 0.4 0.5</size></box>
+        </geometry>
+      </collision>
+      <visual name="v1">
+        <geometry>
+          <box><size>0.4 0.4 0.5</size></box>
+        </geometry>
+        <material><ambient>1 0 0 1</ambient></material>
+      </visual>
+    </link>
+  </model>
+
+  <model name="obs2">
+    <static>true</static>
+    <pose>-2 6 0.25 0 0 0</pose>
+    <link name="link">
+      <collision name="c1">
+        <geometry>
+          <box><size>0.4 0.4 0.5</size></box>
+        </geometry>
+      </collision>
+      <visual name="v1">
+        <geometry>
+          <box><size>0.4 0.4 0.5</size></box>
+        </geometry>
+        <material><ambient>0 1 0 1</ambient></material>
+      </visual>
+    </link>
+  </model>
+
+  <model name="obs3">
+    <static>true</static>
+    <pose>0 -6 0.25 0 0 0</pose>
+    <link name="link">
+      <collision name="c1">
+        <geometry>
+          <box><size>0.4 0.4 0.5</size></box>
+        </geometry>
+      </collision>
+      <visual name="v1">
+        <geometry>
+          <box><size>0.4 0.4 0.5</size></box>
+        </geometry>
+        <material><ambient>0 0 1 1</ambient></material>
+      </visual>
+    </link>
+  </model>
+
+</world>
+
+</sdf>

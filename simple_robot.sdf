@@ -1,0 +1,106 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <model name="simple_bot">
+
+    <pose>0 0 0.3 0 0 0</pose>
+
+    <link name="base_link">
+
+      <inertial>
+        <mass>1.0</mass>
+      </inertial>
+
+      <!-- BODY -->
+      <collision name="collision">
+        <geometry>
+          <box><size>0.4 0.4 0.3</size></box>
+        </geometry>
+      </collision>
+
+      <visual name="body_visual">
+        <geometry>
+          <box><size>0.4 0.4 0.3</size></box>
+        </geometry>
+        <material>
+          <ambient>0 1 0 1</ambient>
+        </material>
+      </visual>
+
+      <!-- FRONT MARKER -->
+      <visual name="front_marker">
+        <pose>0.25 0 0.1 0 0 0</pose>
+        <geometry>
+          <box><size>0.1 0.2 0.1</size></box>
+        </geometry>
+        <material>
+          <ambient>1 0 0 1</ambient>
+        </material>
+      </visual>
+
+      <!-- 🔥 IMPROVED LIGHTWEIGHT LIDAR -->
+      <sensor name="lidar" type="ray">
+        <pose>0.2 0 0.25 0 0 0</pose>
+        <update_rate>5</update_rate>
+
+        <ray>
+          <scan>
+            <horizontal>
+              <samples>30</samples>        <!-- FIXED -->
+              <min_angle>-0.8</min_angle>  <!-- FIXED -->
+              <max_angle>0.8</max_angle>
+            </horizontal>
+          </scan>
+
+          <range>
+            <min>0.1</min>
+            <max>5.0</max>
+          </range>
+        </ray>
+
+        <plugin name="gazebo_ros_ray_sensor" filename="libgazebo_ros_ray_sensor.so">
+          <ros><namespace>/</namespace></ros>
+          <output_type>sensor_msgs/LaserScan</output_type>
+          <topic_name>/scan</topic_name>
+          <frame_name>base_link</frame_name>
+        </plugin>
+      </sensor>
+
+      <!-- 🔥 TINY CAMERA -->
+      <sensor name="camera" type="camera">
+        <pose>0.3 0 0.35 0 1.2 0</pose>
+        <update_rate>5</update_rate>
+
+        <camera>
+          <horizontal_fov>1.0</horizontal_fov>
+
+          <image>
+            <width>64</width>
+            <height>48</height>
+            <format>R8G8B8</format>
+          </image>
+
+          <clip>
+            <near>0.1</near>
+            <far>10</far>
+          </clip>
+        </camera>
+
+        <plugin name="gazebo_ros_camera" filename="libgazebo_ros_camera.so">
+          <ros><namespace>/</namespace></ros>
+          <camera_name>camera</camera_name>
+          <image_topic_name>/camera/image_raw</image_topic_name>
+          <frame_name>camera_link</frame_name>
+        </plugin>
+      </sensor>
+
+    </link>
+
+    <!-- MOVEMENT -->
+    <plugin name="planar_move" filename="libgazebo_ros_planar_move.so">
+      <ros><namespace>/</namespace></ros>
+      <command_topic>cmd_vel</command_topic>
+      <odometry_topic>odom</odometry_topic>
+    </plugin>
+
+  </model>
+</sdf>
